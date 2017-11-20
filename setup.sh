@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# RasPi Auto Config Script
+# RasPi Auto Config Script - Configuration Stage
 # Developed by Joe Izzard (Obigeek)
-# Version: 1.0.0
+# Version: 1.0.1
 
  # Orange
 RED='\033[0;31m'
@@ -23,7 +23,8 @@ cat<<"EOF"
 EOF
 echo -e "${NC}"
 echo 'Raspberry Pi Auto Configuration Script'
-echo 'Version: 1.0.0'
+echo 'Stage 2'
+echo 'Version: 1.0.1'
 echo -e "Status: ${ORANGE}Alpha${NC}"
 echo '----------------------------------------------------------------------------------------------------'
 echo ''
@@ -45,13 +46,6 @@ else
     exit
   fi
 fi
-
-echo ""
-echo "----- Update -----"
-echo -n "Update: "
-apt-get update -qq
-apt-get upgrade -qq
-echo -e "${GREEN}[Complete]${NC}"
 
 echo ""
 echo "----- Raspi-config Basics -----"
@@ -95,21 +89,21 @@ fi
 
 if [ $boot_to = 'CLI' ]; then
   if [ $auto_login = true ]; then
-    raspi-config nonint do_boot_behaviour B1
-    echo -e "Headless Server: ${RED}[False]${NC}"
+    raspi-config nonint do_boot_behaviour B2
+    echo -e "Headless Server: ${GREEN}[True]${NC}"
     echo -e "Auto Login: ${GREEN}[True]${NC}"
   else
-    raspi-config nonint do_boot_behaviour B2
-    echo -e "Headless Server: ${RED}[False]${NC}"
+    raspi-config nonint do_boot_behaviour B1
+    echo -e "Headless Server: ${GREEN}[True]${NC}"
     echo -e "Auto Login: ${RED}[False]${NC}"
   fi
 else
   if [ $auto_login = true ]; then
-    raspi-config nonint do_boot_behaviour B3
+    raspi-config nonint do_boot_behaviour B4
     echo -e "Headless Server: ${RED}[False]${NC}"
     echo -e "Auto Login: ${GREEN}[True]${NC}"
   else
-    raspi-config nonint do_boot_behaviour B4
+    raspi-config nonint do_boot_behaviour B3
     echo -e "Headless Server: ${RED}[False]${NC}"
     echo -e "Auto Login: ${RED}[False]${NC}"
   fi
@@ -321,14 +315,6 @@ if [ ! $conf_file = true ]; then
 fi
 raspi-config nonint do_hostname $set_hostname
 echo -e "Hostname: ${ORANGE}[$set_hostname]${NC}"
-
-# Ip address
-if [ ! $conf_file = true ]; then
-  echo -n "Hostname? : "
-  read ip_address
-fi
-ifconfig eth0 $ip_address
-echo -e "IP: ${ORANGE}[$ip_address]${NC}"
 
 # Ip address
 if [ ! $conf_file = true ]; then
