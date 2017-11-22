@@ -24,7 +24,7 @@ EOF
 echo -e "${NC}"
 echo 'Raspberry Pi Auto Configuration Script'
 echo 'Stage 2'
-echo 'Version: 1.0.1'
+echo 'Version: 1.0.2'
 echo -e "Status: ${ORANGE}Alpha${NC}"
 echo '----------------------------------------------------------------------------------------------------'
 echo ''
@@ -163,10 +163,12 @@ if [ ! $conf_file = true ]; then
 fi
 
 if [ $enable_ssh = true ]; then
-  raspi-config nonint do_ssh 1
+  systemctl enable ssh
+  systemctl start ssh
   echo -e "SSH: ${GREEN}[Enabled]${NC}"
 else
-  raspi-config nonint do_ssh 0
+  systemctl stop ssh
+  systemctl disable ssh
   echo -e "SSH: ${RED}[Disabled]${NC}"
 fi
 
@@ -185,7 +187,6 @@ if [ $enable_vnc = true ]; then
   raspi-config nonint do_vnc 1
   echo -e "VNC: ${GREEN}[Enabled]${NC}"
 else
-  raspi-config nonint do_vnc 0
   echo -e "VNC: ${RED}[Disabled]${NC}"
 fi
 

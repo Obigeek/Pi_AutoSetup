@@ -24,7 +24,7 @@ EOF
 echo -e "${NC}"
 echo 'Raspberry Pi Auto Configuration Script'
 echo 'Stage 1'
-echo 'Version: 1.0.1'
+echo 'Version: 1.0.2'
 echo -e "Status: ${ORANGE}Alpha${NC}"
 echo '----------------------------------------------------------------------------------------------------'
 

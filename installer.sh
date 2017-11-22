@@ -24,7 +24,7 @@ EOF
 echo -e "${NC}"
 echo 'Raspberry Pi Auto Configuration Script'
 echo 'Install - Master Branch'
-echo 'Version: 1.0.1'
+echo 'Version: 1.0.2'
 echo -e "Status: ${ORANGE}Alpha${NC}"
 echo '----------------------------------------------------------------------------------------------------'
 
@@ -32,11 +32,11 @@ echo '----- Downloading -----'
 echo -n "Download Configuration? [y/n]: "
 read download_conf
 if [[ $download_conf =~ [Yy]$ ]]; then
-  wget -o install.sh https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/config_settings.conf
+  wget https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/config_settings.conf
 fi
 
-wget -o install.sh https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/install.sh
-wget -0 setup.sh https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/setup.sh
+wget https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/update.sh
+wget https://raw.githubusercontent.com/Obigeek/Pi_AutoSetup/master/setup.sh
 
 clear
 
